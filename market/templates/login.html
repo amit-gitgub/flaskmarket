@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login Page
+{% endblock %}
+
+<!-- All the details of this page being pulled from form.py through jinja form object created in routes.py -->
+{% block content %}
+<body class="text-center">
+<div class="container">
+    <form method="POST" class="form-register" style="color:white">
+        <!--Below line is to save from hacker attack...it hides the application from exposing  our token  -->
+        {{ form.hidden_tag() }}
+        <h1 class="h3 my-3 font-weight-normal">
+            Please Login
+        </h1>
+        {{ form.username.label() }}
+        {{ form.username(class="form-control", placeholder="UserName") }}
+
+
+        {{ form.password.label() }}
+        {{ form.password(class="form-control", placeholder="Password")}}
+
+        <br>
+        <br>
+
+        <div class="checkbox mb-3">
+            <h6>Do not have an Account?</h6>
+            <a class="btn btn-sm btn-secondary" href="{{ url_for('register_page')}}">Register</a>
+        </div>
+
+        {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+    </form>
+</div>
+</body>
+{% endblock%}
+
